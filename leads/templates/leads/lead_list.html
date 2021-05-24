@@ -1,0 +1,77 @@
+{% extends "base.html" %}{% load static %} {% block content %}
+
+<section class="text-gray-400 bg-gray-900 body-font">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="flex flex-col text-center w-full mb-20">
+      <h1
+        class="text-2xl font-medium title-font mb-4 text-white tracking-widest"
+      >
+        OUR Leads
+      </h1>
+      <p class="lg:w-2/3 mx-auto leading-relaxed text-base">
+        Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical
+        gentrify, subway tile poke farm-to-table. Franzen you probably haven't
+        heard of them.
+      </p>
+    </div>
+    <div class="flex flex-wrap -m-4">
+      {% for lead in leads %}
+      <div class="p-4 lg:w-1/2">
+        <div
+          class="
+            h-full
+            flex
+            sm:flex-row
+            flex-col
+            items-center
+            sm:justify-start
+            justify-center
+            text-center
+            sm:text-left
+          "
+        >
+          <img
+            alt="team"
+            class="
+              flex-shrink-0
+              rounded-lg
+              w-48
+              h-48
+              object-cover object-center
+              sm:mb-0
+              mb-4
+            "
+            src="{% static 'images/avtar.jpg' %}"
+          />
+          <div class="flex-grow sm:pl-8">
+            <h2 class="title-font font-medium text-lg text-white">
+              {{lead.first_name}} {{lead.last_name}}
+            </h2>
+            <h3 class="text-gray-500 mb-3 hover:text-blue-300">
+              <a href="{% url 'leads:lead-detail' lead.pk %}">view Details</a>
+            </h3>
+            <p class="mb-4">
+              DIY tote bag drinking vinegar cronut adaptogen squid fanny pack
+              vaporware.
+            </p>
+            <div class="inline-flex">
+              <button class="px-4 bg-red-600">
+                <a
+                  onclick="return confirm('Are you sure you want to delete this?')"
+                  href="/leads/{{lead.pk}}/delete"
+                  >Delete</a
+                >
+              </button>
+              <button class="px-4 bg-blue-600">
+                <a href="{% url 'leads:lead-update' lead.pk%}">Update</a>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="text-center text-4xl bg-black">Enjoy other Services</div>
+</section>
+{% endblock content %}

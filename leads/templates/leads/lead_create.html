@@ -1,0 +1,11 @@
+{% extends "base.html" %} {% block content %}
+<div class="leadform text-center grid">
+  <button class="btn"><a href="/leads">Go Back</a></button>
+  <h1>Add new Lead</h1>
+  <!--Post the data-->
+  <form method="post">
+    {% csrf_token %} {{form.as_p}}
+    <button type="submit">Submit</button>
+  </form>
+</div>
+{% endblock content %}
